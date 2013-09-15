@@ -1,0 +1,41 @@
+//referred from: https://github.com/heygrady/compass-photoshop-drop-shadow/blob/master/stylesheets/_photoshop-drop-shadow.scss
+//Written by Zhijian Xia
+//Date: 2013-09-15
+
+.ps-box-shadow(@shadow) {
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+
+.ps-shadow(@angle: 90, @distance: 0, @spread: 0, @size: 0, @color: #000) {
+    @angle1: (180 - @angle) * pi() / 180;
+    @h-shadow: round(cos(@angle1) * @distance);
+    @v-shadow: round(cos(@angle1) * @distance);
+    @css-spread: (@size * @spread) / 100;
+    @blur: (@size - @css-spread);
+
+    @arg: @h-shadow @v-shadow @blur @css-spread @color;
+    .ps-box-shadow(@arg)
+}
+
+.ps-inner-shadow(@angle: 90, @distance: 0, @spread: 0, @size: 0, @color: #000) {
+    @angle1: (180 - @angle) * pi() / 180;
+    @h-shadow: round(cos(@angle1) * @distance);
+    @v-shadow: round(cos(@angle1) * @distance);
+    @css-spread: (@size * @spread) / 100;
+    @blur: (@size - @css-spread);
+
+    @arg: @h-shadow @v-shadow @blur @css-spread @color inset;
+    .ps-box-shadow(@arg)
+}
+
+.ps-text-shadow(@angle: 90, @distance: 0, @spread: 0, @size: 0, @color: #000) {
+    @angle1: (180 - @angle) * pi() / 180;
+    @h-shadow: round(cos(@angle1) * @distance);
+    @v-shadow: round(cos(@angle1) * @distance);
+    @css-spread: (@size * @spread) / 100;
+    @blur: (@size - @css-spread);
+
+    text-shadow: @h-shadow @v-shadow @blur @color;
+}
